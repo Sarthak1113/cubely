@@ -76,9 +76,9 @@ export function determineFaceDragMove(input: FaceDragInput): StandardMoveNotatio
     dragTangent = t2.clone().multiplyScalar(Math.sign(dot2));
   }
 
-  // Cross product: rotationAxis = dragTangent x hitNormal
+  // Cross product: rotationAxis = hitNormal x dragTangent (right-hand torque/rotation)
   const normalVec = new THREE.Vector3(nx, ny, nz);
-  const rotAxis = new THREE.Vector3().crossVectors(dragTangent, normalVec);
+  const rotAxis = new THREE.Vector3().crossVectors(normalVec, dragTangent);
 
   const ax = Math.round(rotAxis.x);
   const ay = Math.round(rotAxis.y);
